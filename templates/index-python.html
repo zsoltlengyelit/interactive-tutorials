@@ -68,41 +68,10 @@
                 {% endif %}
             </div>
 
-            <div class="hidden-phone">
-
-            {% if domain_data.courses %}
-            <h3>Online Courses</h3>
-            <div class="row">
-
-                {% for course in domain_data.courses %}
-                <div class="course col-2">
-                    <a href="{{ course.link }}">
-                        <img src="{{ course.image_url }}">
-                        <p style="font-weight: bold; margin-top: 10px; font-size: 14px">{{ course.link_name }}</p>
-{#                    <div>Retail Price: ${{ course.retail_price }}</div>#}
-{#                    <div style="text-size: 12px">{{ course.advertiser }}</div>#}
-                    </a>
-                    <img src="{{ course.pixel_url }}" width="1" height="1" border="0"/>
-                </div>
-                {% endfor %}
-            </div>
-            {% endif %}
-
-            </div>
 
         </div>
         <div class="col-2 d-none d-lg-block mt-2">
-            <div id="google-ad-right">
-                <iframe src="https://learnpython-ads.datacamp.com/?page={{page_title}}&language={{language_code}}" frameborder="0" width="160" height="600" scrolling="no" allowtransparancy="true" style="margin-bottom: 10px; border: 0;"></iframe>
 
-                <a href="https://click.linksynergy.com/fs-bin/click?id=2mhs2G02AJA&offerid=467035.369&subid=0&type=4"><IMG border="0"   alt="Start your future with a Data Science Certificate." src="https://ad.linksynergy.com/fs-bin/show?id=2mhs2G02AJA&bids=467035.369&subid=0&type=4&gridnum=9"></a>
-
-                <h4>Sponsors</h4>
-                <div style="margin-top: 10px">
-                    <a href="https://digitalocean.com/"><img src="/static/img/banners/digital-ocean.png" style="width: 160px"></a>
-                </div>
-
-            </div>
         </div>
     </div>
 </div>

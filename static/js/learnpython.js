@@ -7,6 +7,7 @@ var minimized = false;
 (function( jQuery ) {
 
 if ( window.XDomainRequest ) {
+
 	jQuery.ajaxTransport(function( s ) {
 		if ( s.crossDomain && s.async ) {
 			if ( s.timeout ) {
@@ -200,7 +201,8 @@ function correct() {
 
 function print(text) {
 	output.setValue(text);
-	if ($.trim(tutorialData.output) != '' && $.trim(tutorialData.output) == $.trim(text)) {
+	let solved = $.trim(tutorialData.output) != '' && $.trim(tutorialData.output) == $.trim(text);
+	if (solved) {
 		correct();
 	}
 }
@@ -227,7 +229,7 @@ function load() {
             indentUnit: 4,
             tabMode: "shift",
             mode: mode,
-            theme: "xq-light"
+            theme: outputTheme
         });
 
         codeBlocks.addClass(window.domainData.prism_mode);
@@ -277,20 +279,30 @@ function showExpected() {
 }
 
 function showSolution() {
-	maximizeDock();
-    var solutionText = tutorialData.solution;
-    if (solutionText) {
-    	editor.setValue(solutionText);
-    } else {
-        editor.setValue("There is currently no solution to this exercise.\nPlease contribute your solution on GitHub.\n\nhttp://github.com/ronreiter/interactive-tutorials");
-        $("#run-button").prop("disabled", true);
-    }
+	bootbox.confirm("Are you sure you wanna see?", function(success) {
+		if (success) {
+			maximizeDock();
+			var solutionText = tutorialData.solution;
+			if (solutionText) {
+				editor.setValue(solutionText);
+			}
+			else {
+				editor.setValue(
+					"There is currently no solution to this exercise.\nPlease contribute your solution on GitHub.\n\nhttp://github.com/ronreiter/interactive-tutorials");
+				$("#run-button").prop("disabled", true);
+			}
+		}
+
+	});
 }
 
 function reset() {
 	maximizeDock();
     $("#run-button").prop("disabled", false);
 	editor.setValue(originalCode);
+
+	$("html, body").animate({ scrollTop: $(document).height() }, 400);
+	code.focus();
 }
 
 function toggleMinimize() {
